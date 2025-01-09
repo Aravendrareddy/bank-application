@@ -1,10 +1,18 @@
 pipeline {
     agent any
-    
-    environment {
-        ECR_REGISTRY = '123456789012.dkr.ecr.us-west-2.amazonaws.com'
-        IMAGE_NAME = 'banking-app'
-    }
+
+tools{
+maven 'maven3.8.2'
+
+}
+
+stages{
+
+  stage('CheckOutCode'){
+    steps{
+    git branch: 'main', url: 'https://github.com/devopstrainingblr/maven-web-application-1.git'
+	
+	}
     
     stages {
         stage('Build') {
